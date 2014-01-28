@@ -1,7 +1,7 @@
 /*
  *  Image Zoom 1.0 - jQuery plugin
  *  written by Yosuke Fujii
- *  version 0.0.1
+ *  version 0.0.2
  *  modified 2014/1/28
  *
  *  Copyright (c) 2014 Yosuke Fujii
@@ -32,7 +32,8 @@
 		zoom_x=0, zoom_y=0,      // zoom view image width height
 		zoom_ax=0, zoom_ay=0,    // zoom area size width height
 		over = false,            // mouse over mode
-		cur_l=0, cur_t=0;        // cursor position left top
+		cur_l=0, cur_t=0,        // cursor position left top
+		largeImageUrl;
 
 		// load options
 		options = $.extend({}, $.fn.imageZoom.defaults, options);
@@ -61,16 +62,21 @@
 				log('obj_lt: '+obj_l+','+obj_t+'  obj_xy: '+obj_x+','+obj_y+'  zoom_xy: '+zoom_x+','+zoom_y+'  curObj_xy: '+curObj_x+','+curObj_y);
 
 				if(options.largeImageUrl){
-					img.src = options.largeImageUrl;
+					largeImageUrl = options.largeImageUrl;
 				}else{
-					img.src = $(obj).attr('src');
+					largeImageUrl = $(obj).attr('src');
 				}
+				if(typeof window.getSelection !=="function"){
+					largeImageUrl = updateQueryStringParameter(largeImageUrl,'timestamp',(new Date()).getTime());
+				}
+				log(largeImageUrl);
+				img.src   = largeImageUrl;
 				img.width = zoom_x;
 				img.height = zoom_y;
-				$(img).error(function(){ imageFound = false; });
-				img.onload = function(){ imageLoaded = true; };
-				$('body').off('.imageZoom');
-				$('body').on('mousemove.imageZoom',function(event){move(event);});
+				$(img).error(function(){ imageFound = false; log('image load error'); });
+				img.onload = function(){ imageLoaded = true; log('image onload'); };
+				$('body').unbind('.imageZoom');
+				$('body').bind('mousemove.imageZoom',function(event){move(event);});
 			}else{
 				log('Object tagname must be img.');
 			}
@@ -78,7 +84,7 @@
 
 		// private mothods
 		function log(str){
-			if(options.debugMode) console.log('jQuery imageZoom: '+ str);
+			if(options.debugMode && 'console' in window) console.info('jQuery imageZoom: '+ str);
 		}
 		function hide(){
 			over = false;
@@ -91,6 +97,7 @@
 				$('#'+ options.zoomAreaId+' div').html(options.errorMessage);
 			} else {
 				if(imageLoaded){
+					log('image loaded');
 					$('#'+ options.zoomAreaId).html('').append(img);
 					clearTimeout(timeout);
 				} else {
@@ -103,7 +110,7 @@
 			var html = '<div id="'+ options.zoomAreaId +'" style="position:absolute;overflow:hidden;border:1px solid '+options.zoomAreaBorderColor+';background-color:#fff;left:'+zoom_l+'px;top:'+zoom_t+'px;width:'+(zoom_ax -2)+'px;height:'+(zoom_ay -2)+'px;z-index:'+options.zoomAreaZindex+';"><div style="padding:45% 20%;text-align:center;font-size:'+(zoom_ax/20)+'px;color:#777;font-weight:bold;">'+ options.preloadMessage +'</div></div>';
 			if(options.lens) html += '<div id="'+ options.lensId +'" style="position:absolute;overflow:hidden;content:\'\';cursor:move;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity='+(options.lensOpacity *100)+');opacity:'+options.lensOpacity+';width:'+(curObj_x -2)+'px;height:'+(curObj_y -2)+'px;border:1px solid '+options.lensBorderColor+';background-color:'+options.lensColor+';z-index:'+options.lensZindex+';"></div>';
 			$(html).prependTo(options.parent);
-			$(img).css({'position':'absolute','top':'0','left':'0'});
+			$(img).css({'position':'absolute','top':'0','left':'0','width':zoom_x,'height':zoom_y});
 			check();
 		} // show
 		function move(event){
@@ -126,10 +133,19 @@
 				zyt = fpt / obj_y * zoom_y;
 				$('#'+options.zoomAreaId+' img').css({'left':zxl*(-1),'top':zyt*(-1)});
 				if(options.lens) $('#'+options.lensId).css({'left':obj_l+fpl,'top':obj_t+fpt});
-				log('fpl,fpt: '+fpl+','+fpt+'  zxl,zyt: '+zxl+','+zyt);
+				// log('fpl,fpt: '+fpl+','+fpt+'  zxl,zyt: '+zxl+','+zyt);
 			}
-
 		} // move
+
+		function updateQueryStringParameter(uri, key, value) {
+			var re = new RegExp("([?|&])" + key + "=.*?(&|$)", "i");
+			separator = uri.indexOf('?') !== -1 ? "&" : "?";
+			if (uri.match(re)) {
+				return uri.replace(re, '$1' + key + "=" + value + '$2');
+			}else{
+				return uri + separator + key + "=" + value;
+			}
+		}
 
 	}; // $.fn.imageZoom
 

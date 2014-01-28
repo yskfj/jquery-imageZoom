@@ -1,5 +1,6 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
 <style>
 .zoom {
     border: 1px solid #ccc;
@@ -10,7 +11,7 @@
 <img class="zoom" src="img/small.jpg" width="300" height="300">
 
 <script src="http://a248.e.akamai.net/f/248/217668/100d/s.gimg.jp/resource/js/jquery-1.10.2.min.js"></script>
-<script src="js/imageZoom.min.js"></script>
+<script src="js/imageZoom.js?11"></script>
 <script>
 $('.zoom').imageZoom({
     zoomAreaWidth: 400,
@@ -20,6 +21,7 @@ $('.zoom').imageZoom({
     zoomAreaOffsetY: 10,
     largeImageUrl: 'img/large.jpg',
     zoomRatio: 5,
+    debugMode: true
 });
 
 </script>
