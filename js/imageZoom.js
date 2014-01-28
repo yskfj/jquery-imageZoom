@@ -1,6 +1,8 @@
 /*
  *  Image Zoom 1.0 - jQuery plugin
  *  written by Yosuke Fujii
+ *  version 0.0.1
+ *  modified 2014/1/28
  *
  *  Copyright (c) 2014 Yosuke Fujii
  *  Licensed under the MIT (MIT-LICENSE.txt)
@@ -16,21 +18,21 @@
 		if(window.ontouchstart !== undefined) return false;
 
 		// valuables
-		var obj;
-		var img = new Image();
-		var imageLoaded = false;
-		var imageFound = true;
-		var visible = false;
-		var timeout;                 // setTImeout object
-		var obj_l=0, obj_t=0;        // original view area offset left top
-		var obj_x=0, obj_y=0;        // original view area width width height
-		var curObj_l=0, curObj_t=0;  // lens area offset left top
-		var curObj_x=0, curObj_y=0;  // lens area width height
-		var zoom_l=0, zoom_t=0;      // zoom view image offset left top
-		var zoom_x=0, zoom_y=0;      // zoom view image width height
-		var zoom_ax=0, zoom_ay=0;    // zoom area size width height
-		var over = false;            // mouse over mode
-		var cur_l=0, cur_t=0;        // cursor position left top
+		var obj,
+		img = new Image(),
+		imageLoaded = false,
+		imageFound = true,
+		visible = false,
+		timeout,                 // setTImeout object
+		obj_l=0, obj_t=0,        // original view area offset left top
+		obj_x=0, obj_y=0,        // original view area width width height
+		curObj_l=0, curObj_t=0,  // lens area offset left top
+		curObj_x=0, curObj_y=0,  // lens area width height
+		zoom_l=0, zoom_t=0,      // zoom view image offset left top
+		zoom_x=0, zoom_y=0,      // zoom view image width height
+		zoom_ax=0, zoom_ay=0,    // zoom area size width height
+		over = false,            // mouse over mode
+		cur_l=0, cur_t=0;        // cursor position left top
 
 		// load options
 		options = $.extend({}, $.fn.imageZoom.defaults, options);
