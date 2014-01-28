@@ -1,0 +1,39 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+.zoom {
+    border: 1px solid #ccc;
+}
+</style>
+<body>
+<div>オプションはすべてデフォルト</div>
+<img class="zoom" src="img/small.jpg" width="300" height="300">
+
+<script src="http://a248.e.akamai.net/f/248/217668/100d/s.gimg.jp/resource/js/jquery-1.10.2.min.js"></script>
+<script src="js/imageZoom.js"></script>
+<script>
+$('.zoom').imageZoom({
+    zoomAreaId: 'imageZoom_zoomArea',
+    zoomAreaWidth: false,
+    zoomAreaHeight: false,
+    zoomAreaZindex: 100,
+    zoomAreaOffsetX: 10,
+    zoomAreaOffsetY: 0,
+    zoomAreaBorderColor: '#ccc',
+    lens: true,
+    lensId: 'imageZoom_lensArea',
+    lensOpacity: 0.3,
+    lensZindex: 200,
+    lensColor: '#3695d7',
+    lensBorderColor: '#000',
+    parent: 'body',
+    preloadMessage: 'Image Loading...',
+    errorMessage: 'Error while Loading Image.',
+    largeImageUrl: false,
+    zoomRatio: 3,
+    debugMode: false
+});
+
+</script>
+</body>
+</html>

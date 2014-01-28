@@ -1,0 +1,27 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+.zoom {
+    border: 1px solid #ccc;
+}
+</style>
+<body>
+<div>拡大表示用の画像を指定<br>ズームエリアのサイズと位置を指定<br>拡大倍率を指定</div>
+<img class="zoom" src="img/small.jpg" width="300" height="300">
+
+<script src="http://a248.e.akamai.net/f/248/217668/100d/s.gimg.jp/resource/js/jquery-1.10.2.min.js"></script>
+<script src="js/imageZoom.js"></script>
+<script>
+$('.zoom').imageZoom({
+    zoomAreaWidth: 400,
+    zoomAreaHeight: 400,
+    zoomAreaZindex: 100,
+    zoomAreaOffsetX: 50,
+    zoomAreaOffsetY: 10,
+    largeImageUrl: 'img/large.jpg',
+    zoomRatio: 5,
+});
+
+</script>
+</body>
+</html>
