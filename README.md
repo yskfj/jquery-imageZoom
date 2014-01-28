@@ -43,80 +43,80 @@ var options = {
 };
 $('.imageObjectClass').imageZoom(options);
 ```
-### zoomAreaId
+#### zoomAreaId
 Default value: 'imageZoom_zoomArea'
 The ID of created image zoom element. Of course you can use your own, but make sure you update the CSS accordingly.
 
-### zoomAreaWidth
+#### zoomAreaWidth
 Default value: false
 Width of created image zoom element. False is same as original image element width.
 
-### zoomAreaHeight
+#### zoomAreaHeight
 Default value: false
 Height of created image zoom element. False is same as original image element height.
 
-### zoomAreaZindex
+#### zoomAreaZindex
 Default value: 100
 z-index of created image zoom element.
 
-### zoomAreaOffsetX
+#### zoomAreaOffsetX
 Default value: 10
 Created image zoom element X offset from the small image. (always positive to move the zoom element more on the right)
 
-### zoomAreaOffsetY
+#### zoomAreaOffsetY
 Default value: 0
 Created image zoom element Y offset from the small image. (always positive to move the zoom element more on the bottom)
 
-### zoomAreaBorderColor
+#### zoomAreaBorderColor
 Default value: '#ccc'
 Border Color of created image element.
 
-### lens
+#### lens
 Default value: true
 if set to false,the small lens element over the original image won't show.
 
-### lensId
+#### lensId
 Default value: 'imageZoom_lensArea'
 The ID of small lens element. Of course you can use your own, but make sure you update the CSS accordingly.
 
-### lensOpacity
+#### lensOpacity
 Default value: 0.3
 Opacity of small lens element.
 
-### lensZindex
+#### lensZindex
 Default value: 200
 z-index of small lens element.
 
-### lensColor
+#### lensColor
 Default value: '#3695d7'
 Color of small lens element.
 
-### lensBorderColor
+#### lensBorderColor
 Default value: '#000'
 Border Color of small lens element. if won't show, set to 'transparent'.
 
-### parent
+#### parent
 Default value: 'body'
 Image zoom element and Small lens element prepend to this object.
 ex.  $(element).prependTo('body');
 
-### preloadMessage
+#### preloadMessage
 Default value: 'Image Loading...'
 This message shows before image loading on zoom area.
 
-### errorMessage
+#### errorMessage
 Default value: 'Error while Loading Image.'
 This message shows on zoom area, if large image loading error occured.
 
-### largeImageUrl
+#### largeImageUrl
 Default value: false
 if you want to show other large image, set this value.
 
-### zoomRatio
+#### zoomRatio
 Default value: 3
 increse this value, zoom more up.
 
-### debugMode
+#### debugMode
 Default value: false
 Set true to more infomation on browser console.
 
