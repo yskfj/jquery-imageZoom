@@ -4,6 +4,9 @@ jquery-imageZoom
 シンプルな画像ズームjQueryプラグインです  
 A simple, lightweight jQuery plugin for image zoom.
 
+aタグで拡大画像を指定するタイプが多いので、画像自体にアクションを付けられるようにしました。  
+そのため、元画像をaタグで囲ってもそのクリックを阻害しません。  
+
 ## Installation
 
 かならずjQueryの読み込みのあとでこのライブラリを読み込むようにしてください  
